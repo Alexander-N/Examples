@@ -143,7 +143,7 @@ RecvMsg(i) ==
   /\ active' = [ active EXCEPT ![i] = TRUE ]
   \* Consume a message (not the token!).
   /\ \E j \in 1..Len(inbox[i]) : 
-          /\ inbox[i][j].type # "tok"
+          /\ inbox[i][j].type = "pl"
           /\ inbox' = [inbox EXCEPT ![i] = RemoveAt(@, j) ]
   /\ UNCHANGED <<>>                           
 
@@ -167,7 +167,7 @@ Spec == Init /\ [][Next]_vars /\ WF_vars(System)
 (* The number of incoming messages of a node's given inbox.                *)
 (***************************************************************************)
 NumberOfMsg(ibx) == 
-  Len(SelectSeq(ibx, LAMBDA msg: msg.type # "tok"))
+  Len(SelectSeq(ibx, LAMBDA msg: msg.type = "pl"))
 
 (***************************************************************************)
 (* Bound the otherwise infinite state space that TLC has to check.         *)
