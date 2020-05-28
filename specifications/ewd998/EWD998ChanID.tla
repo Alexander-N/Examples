@@ -44,7 +44,7 @@ ASSUME NAssumption == N \in Nat \ {0} \* At least one node (a little bit of
 \* is as long as it is always the same.
 Initiator == CHOOSE n \in Nodes : TRUE
                                          
-\* Oragnize Nodes in a ring. 
+\* Organize Nodes in a ring. 
 RingOfNodes == 
   CHOOSE r \in [ Nodes -> Nodes ]: IsSimpleCycle(Nodes, r)
 
